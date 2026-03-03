@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <main>
+    <main className="pt-14 md:pt-16">
       <Navigation />
       <Hero />
       <About />

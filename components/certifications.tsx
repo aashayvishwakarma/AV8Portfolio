@@ -76,7 +76,7 @@ export function Certifications() {
               {certifications.map((cert) => (
                 <div
                   key={cert.name}
-                  className="group flex items-start justify-between rounded-lg border border-[#FDFFFF]/10 p-6 transition-colors hover:border-primary/30"
+                  className="group liquid-glass flex items-start justify-between p-6 transition-transform hover:-translate-y-0.5"
                 >
                   <div>
                     <h4 className="font-serif text-lg font-bold text-[#FDFFFF] md:text-xl">
@@ -107,11 +107,11 @@ export function Certifications() {
                   <p className="mb-3 text-sm font-medium text-primary">
                     {skillGroup.category}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {skillGroup.items.map((item) => (
                       <span
                         key={item}
-                        className="rounded-full border border-[#FDFFFF]/10 px-3 py-1.5 text-xs text-[#FDFFFF]/70 transition-colors hover:border-primary/30 hover:text-primary"
+                        className="liquid-glass-olive px-4 py-2 text-sm font-medium text-foreground transition-transform hover:-translate-y-0.5"
                       >
                         {item}
                       </span>
