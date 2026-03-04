@@ -18,34 +18,40 @@ const certifications = [
 const skills = [
   {
     category: "Languages",
-    items: ["Python", "TypeScript", "JavaScript", "SQL", "Swift", "HTML/CSS"],
+    items: ["Python", "Java", "JavaScript", "TypeScript", "HTML/CSS", "SQL", "Go", "Swift", "C/C++"],
   },
   {
-    category: "Frameworks",
-    items: ["Next.js", "React", "Svelte", "SvelteKit", "Node.js"],
+    category: "Frameworks & Libraries",
+    items: ["React", "Next.js", "Node.js", "Spring Boot", "Streamlit", "Flask", "Hadoop", "Apache Spark", "Pandas"],
   },
   {
-    category: "Cloud & Data",
+    category: "Cloud & Tools",
     items: [
       "AWS Lambda",
-      "S3",
+      "Amazon EC2",
+      "Amazon S3",
       "DynamoDB",
-      "Rekognition",
-      "Azure AI Search",
+      "Amazon VPC",
       "Azure Functions",
-      "Supabase",
-      "Firebase",
+      "Azure Blob Storage",
+      "AKS",
+      "Git",
+      "Docker",
+      "Postman",
+      "Jira",
+      "Claude Code",
+      "Cursor"
     ],
   },
   {
     category: "Concepts",
     items: [
       "RAG Systems",
+      "MCP",
       "Cloud Architecture",
-      "Data Engineering",
       "Serverless",
-      "CI/CD",
-      "Agile",
+      "Distributed Systems",
+      "RBAC/RLS",
     ],
   },
 ]

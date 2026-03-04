@@ -27,14 +27,11 @@ export function Contact() {
           {/* Left column */}
           <div>
             <h2 className="mb-6 font-serif text-4xl font-bold uppercase tracking-tight text-foreground md:text-6xl">
-              Let{"'"}s <span className="text-primary">Build</span>
-              <br />
-              Together
+              Let{"'"}s <span className="text-primary">Connect</span>
             </h2>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
               Whether it{"'"}s a collaboration, opportunity, or just a
-              conversation about tech — I{"'"}m always open to connecting with
-              fellow builders.
+              conversation about tech, feel free to message me!
             </p>
           </div>
 

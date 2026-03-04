@@ -1,7 +1,6 @@
 "use client"
 
-import { useState } from "react"
-import { ArrowRight, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
 interface Project {
   title: string
@@ -15,153 +14,157 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Kappa Theta Pi Website",
+    subtitle: "Website + Internal Portal",
+    year: "May 2025 — Present",
+    description:
+      "Working on a website and internal portal for Kappa Theta Pi to help with basic communication and organization for the group. It will be a general place for members and leaders to access information, events, and connect with each other.",
+    tech: ["Next.js", "JavaScript", "Supabase"],
+    highlight: "Student Org",
+  },
+  {
+    title: "Vitality",
+    subtitle: "Axxess Hackathon 2026 — Hackathon Winner",
+    year: "Feb 2026",
+    description:
+      "Vitality turns symptoms into signals by turning subjective symptom tracking into structured, clinician-ready data using an interactive 3D body map. Patients can log where it hurts and how it feels (severity, timing, notes). It supports voice-based logging, automatically extracts key details like region, severity, bleeding, fever, and onset timing, and includes cycle tracking with a transparent red-flag triage engine to help users recognize trends and monitor flare-ups.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Three.js",
+      "Tailwind CSS",
+      "Twilio",
+      "Deepgram",
+      "Librosa",
+    ],
+    highlight: "Hackathon Winner",
+  },
+  {
+    title: "Hydra",
+    subtitle: "HackUTD: Lost in the Pages",
+    year: "Nov 2025",
+    description:
+      "Hydra makes multi-agent complexity visual: a no-code, drag-and-drop workflow creator where each node becomes an “agent head” with its own reasoning style, memory, and tools. Connect agents in a canvas and deploy the whole system behind an API endpoint. With tool + knowledge integrations (GitHub/Jira/local endpoints) and on-the-fly orchestration, users can prototype and iterate on agent workflows quickly while keeping backend details hidden.",
+    tech: [
+      "Next.js",
+      "React Flow",
+      "Tailwind CSS",
+      "FastAPI",
+      "Python",
+      "Uvicorn",
+      "Brev",
+      "NVIDIA Nemotron (via MCP)",
+    ],
+    highlight: "HackUTD",
+  },
+  {
     title: "OneFace",
     subtitle: "AWS Lambda Hackathon",
-    year: "2025",
+    year: "Jun–Jul 2025",
     description:
-      "A portal where admins create events and members get checked in by scanning their face. No forms, no hassle. Quick, seamless attendance tracking powered by serverless architecture.",
+      "A portal where admins create events or classes and members enroll and get checked in by scanning their face as they walk in. No forms, no hassle—just quick, seamless attendance tracking that works for everyone.",
     tech: [
       "AWS Lambda",
-      "Rekognition",
-      "S3",
-      "DynamoDB",
-      "SQS",
-      "API Gateway",
+      "Amazon Rekognition",
+      "Amazon S3",
+      "Amazon DynamoDB",
+      "Amazon VPC",
+      "Amazon SQS",
+      "Amazon API Gateway",
       "React",
+      "Node.js",
       "Python",
+      "JavaScript",
     ],
-    link: "https://github.com/aashayvishwakarma",
+    link: "https://github.com/KappaThetaPiUTD/OneFace",
     highlight: "Hackathon Submission",
   },
   {
-    title: "KTP Member Portal",
-    subtitle: "Internal Platform",
-    year: "2025",
-    description:
-      "A full-stack member portal for Kappa Theta Pi with merchandise sales, event management, calendar-based RSVP, and backend logic for recurring events.",
-    tech: ["Next.js", "Supabase", "JavaScript"],
-  },
-  {
-    title: "7-Eleven AI Search",
-    subtitle: "Enterprise RAG System",
-    year: "2025",
-    description:
-      "Intelligent item search service for master data management, enabling natural language queries instead of manual filters. Built with vector embeddings and RAG architecture.",
-    tech: ["Python", "Azure AI Search", "Azure Functions", "RAG"],
-    highlight: "Industry Project",
-  },
-  {
     title: "Toyota Fuel Economy Analysis",
-    subtitle: "Data Visualization",
-    year: "2024",
+    subtitle: "HackUTD: Ripple Effect",
+    year: "Oct 2024",
     description:
-      "A unified platform aggregating multiple car datasets to visualize fuel usage and performance trends for Toyota vehicles made between 2021 and 2025.",
-    tech: ["Python", "Data Analysis"],
+      "Fuel analysis tools can be hard for regular people to use, so we built a platform that puts data from several car datasets into one place so users can explore fuel information more simply and see fuel-usage and performance trends for Toyota vehicles made between 2021 and 2025.",
+    tech: ["React Native", "JavaScript", "MongoDB"],
+    highlight: "HackUTD",
   },
   {
     title: "ScoreBored",
-    subtitle: "ACM Projects",
-    year: "2023",
+    subtitle: "ACM Projects [Fall 23]",
+    year: "Sep–Dec 2023",
     description:
-      "A habit-tracking web app that creates an interactive scoreboard to track progress over time. Combats boredom with engaging visualizations of goal completion.",
-    tech: ["Svelte", "SvelteKit", "TypeScript", "Tailwind", "Chart.js", "Firebase"],
+      "ScoreBored combats the feeling of boredom by creating an interactive “scoreboard” to track your progress over time. Set a goal (like going to the gym 4 times a week), put that into ScoreBored, and see how often you achieve your goal. Practicing a skill (like music) 2 hours a day? ScoreBored handles that as well—so you can tell if you’re on track.",
+    tech: [
+      "Svelte",
+      "SvelteKit",
+      "CSS",
+      "Tailwind CSS",
+      "DaisyUI",
+      "Chart.js",
+      "Firebase",
+      "HTML",
+      "TypeScript",
+    ],
+    link: "https://github.com/ACM-Projects/ScoreBored",
+    highlight: "ACM Projects",
   },
 ]
 
-function ProjectCard({
-  project,
-  index,
-  isActive,
-  onClick,
-}: {
-  project: Project
-  index: number
-  isActive: boolean
-  onClick: () => void
-}) {
+function ProjectCard({ project }: { project: Project }) {
   return (
-    <div
-      className={`group cursor-pointer border-b border-[#2B4230] transition-all duration-500 ${
-        isActive ? "bg-[#2B4230]" : "hover:bg-[#2B4230]/20"
-      }`}
-      onClick={onClick}
-      onKeyDown={(e) => e.key === "Enter" && onClick()}
-      role="button"
-      tabIndex={0}
-      aria-expanded={isActive}
-    >
-      <div className="flex items-center gap-4 px-6 py-6 md:gap-8 md:px-10">
-        <span className="font-serif text-3xl font-bold text-primary/30 md:text-5xl">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <div className="flex-1">
-          <div className="flex items-center gap-3">
-            <h3
-              className={`font-serif text-xl font-bold uppercase tracking-tight transition-colors md:text-3xl ${
-                isActive ? "text-primary" : "text-foreground"
-              }`}
-            >
+    <article className="liquid-glass group flex h-full flex-col p-6 transition-transform duration-300 hover:-translate-y-0.5">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 className="font-serif text-xl font-bold tracking-tight text-foreground">
               {project.title}
             </h3>
             {project.highlight && (
-              <span className="hidden rounded-full bg-primary/20 px-3 py-0.5 text-[10px] uppercase tracking-widest text-primary md:inline-block">
+              <span className="liquid-glass-pill inline-flex px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-primary">
                 {project.highlight}
               </span>
             )}
           </div>
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            {project.subtitle} — {project.year}
+          <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+            {project.subtitle}
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {project.year}
           </p>
         </div>
-        <ArrowRight
-          size={20}
-          className={`shrink-0 text-primary transition-transform duration-300 ${
-            isActive ? "rotate-90" : ""
-          }`}
-        />
+
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-background/30 text-primary transition-colors hover:bg-primary/10"
+            aria-label={`Open ${project.title}`}
+          >
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        )}
       </div>
 
-      {/* Expanded content */}
-      <div
-        className={`grid transition-all duration-500 ${
-          isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <div className="px-6 pb-8 md:px-10 md:pl-[calc(4.5rem+2.5rem)]">
-            <p className="mb-6 max-w-2xl text-sm leading-relaxed text-[#FDFFFF]/70 md:text-base">
-              {project.description}
-            </p>
-            <div className="mb-4 flex flex-wrap gap-2">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-primary/30 bg-[#172211]/50 px-3 py-1 text-xs uppercase tracking-wider text-primary"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-primary transition-opacity hover:opacity-70"
-              >
-                View Project <ExternalLink size={14} />
-              </a>
-            )}
-          </div>
-        </div>
+      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+        {project.description}
+      </p>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {project.tech.map((t) => (
+          <span
+            key={t}
+            className="liquid-glass-pill inline-flex px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider text-primary"
+          >
+            {t}
+          </span>
+        ))}
       </div>
-    </div>
+    </article>
   )
 }
 
 export function Projects() {
-  const [activeIndex, setActiveIndex] = useState(0)
-
   return (
     <section id="projects" className="bg-background py-24 md:py-32">
       <div className="px-6 md:px-10">
@@ -184,22 +187,16 @@ export function Projects() {
         </div>
 
         <p className="mb-12 max-w-lg text-sm leading-relaxed text-muted-foreground md:text-base">
-          From hackathon-winning serverless architectures to enterprise RAG systems, 
-          each project represents a step forward in solving real-world problems through code.
+          A collection of things I&apos;ve built while learning, collaborating, and figuring it out along the way. Some won awards, most just taught me something new.
         </p>
       </div>
 
-      {/* Project List - Helmet Hall of Fame style */}
-      <div>
-        {projects.map((project, i) => (
-          <ProjectCard
-            key={project.title}
-            project={project}
-            index={i}
-            isActive={activeIndex === i}
-            onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
-          />
-        ))}
+      <div className="px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   )

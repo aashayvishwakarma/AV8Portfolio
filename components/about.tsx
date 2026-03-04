@@ -15,9 +15,9 @@ export function About() {
           <div className="flex flex-col justify-center">
             <blockquote className="font-serif text-3xl font-bold leading-snug text-[#FDFFFF] md:text-4xl lg:text-5xl">
               <span className="text-pretty">
-                It doesn{"'"}t matter where you start,{" "}
+                The best part about tech?{" "}
                 <span className="text-primary">
-                  it{"'"}s how you progress from there.
+                  There{"'"}s always more to figure out.
                 </span>
               </span>
             </blockquote>
@@ -26,15 +26,11 @@ export function About() {
           {/* Right column - Bio */}
           <div className="flex flex-col gap-6">
             <p className="text-base leading-relaxed text-[#FDFFFF]/80 md:text-lg">
-              I{"'"}m Aashay, a senior at UT Dallas pursuing a B.S. in Computer
-              Science. I{"'"}m an aspiring software engineer with industry
-              experience building Retrieval-Augmented Generation (RAG) systems on
-              Azure and engineering data workflows using SQL and Python.
+              Hey, I{"'"}m Aashay. A current senior at UT Dallas studying Computer Science.
+              I spend most of my time contrubuting to my student orgs, building things and learning all the new technologies that come out every day. Lately that{"'"}s meant a lot of cloud architecture, data pipelines in Python and SQL and trying building agents.
             </p>
             <p className="text-base leading-relaxed text-[#FDFFFF]/80 md:text-lg">
-              I{"'"}m passionate about cloud-native development and have built
-              multiple full-stack applications leveraging AWS and Azure, with a
-              focus on ensuring scalable architecture to solve real-world problems.
+              Outside of work I{"'"}m usually with friends, watching sports, driving, working out, and eating all while having great music in my ears.
             </p>
 
             {/* Stats */}
@@ -57,10 +53,10 @@ export function About() {
               </div>
               <div>
                 <p className="font-serif text-3xl font-bold text-primary md:text-4xl">
-                  2
+                  2x
                 </p>
                 <p className="mt-1 text-xs uppercase tracking-widest text-[#FDFFFF]/50">
-                  AWS Certs
+                  AWS Certified
                 </p>
               </div>
             </div>
