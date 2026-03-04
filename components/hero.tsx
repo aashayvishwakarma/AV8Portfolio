@@ -4,10 +4,10 @@ import { Marquee } from "./marquee"
 export function Hero() {
   return (
     <section id="home" className="relative flex h-[calc(100vh-3.5rem)] flex-col overflow-hidden bg-background pb-2 md:pb-4">
-      {/* Main content */}
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden px-6 md:grid md:min-h-0 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] md:gap-6 md:px-10 md:items-end">
+      {/* Main content - extra bottom padding on mobile so scroll indicator doesn't overlap tagline */}
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-24 md:grid md:min-h-0 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] md:gap-6 md:px-10 md:pb-0 md:items-end">
         {/* Portrait card (on top for mobile, right on desktop) */}
-        <div className="order-1 flex min-h-0 flex-1 basis-0 items-end justify-center md:order-2 md:basis-auto md:justify-end">
+        <div className="order-1 flex min-h-0 flex-1 basis-0 items-center justify-center pt-4 pb-4 md:items-end md:pt-0 md:pb-0 md:order-2 md:basis-auto md:justify-end">
           <div className="liquid-glass relative aspect-[3/4] h-full max-h-[38vh] w-full max-w-xs overflow-hidden md:max-h-none md:max-w-sm">
             <Image
               src="/aashay-headshot.JPG"
@@ -112,6 +112,31 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <a
+        href="#about"
+        className="absolute bottom-20 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1 text-foreground/70 transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-full"
+        aria-label="Scroll to next section"
+      >
+        <span className="text-[0.65rem] font-medium uppercase tracking-widest">
+          Scroll
+        </span>
+        <svg
+          className="h-6 w-6 animate-bounce"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
+      </a>
 
       {/* Marquee */}
       <div className="relative z-10 mt-2 shrink-0 border-t border-[#2B4230] md:mt-4">
