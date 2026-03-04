@@ -47,7 +47,7 @@ const experiences: ExperienceItem[] = [
   {
     role: "Software Engineer",
     company: "Kappa Theta Pi",
-    period: "Oct 2024 - Sep 2025",
+    period: "Oct 2024 - Present",
     location: "Richardson, TX",
     description:
       "Developed a member portal using Next.js, Supabase, JavaScript to streamline internal workflows. Engineered the complete user registration flow for a facial recognition attendance portal using AWS Lambda, S3, and Rekognition.",
