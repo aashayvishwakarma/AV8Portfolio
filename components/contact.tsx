@@ -38,7 +38,7 @@ export function Contact() {
           {/* Right column - Social links */}
           <div className="flex flex-col justify-end gap-4">
             <a
-              href="mailto:aashay.vishwakarma@example.com"
+              href="mailto:aashay.vkarma@gmail.com"
               className="group flex items-center justify-between border-b border-[#2B4230] pb-4 transition-colors hover:border-primary"
             >
               <span className="font-serif text-xl font-bold text-foreground transition-colors group-hover:text-primary md:text-2xl">
