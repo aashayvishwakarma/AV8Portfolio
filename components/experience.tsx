@@ -125,48 +125,81 @@ function ExperienceCard({ item }: { item: ExperienceItem }) {
 
 const SECTION_SCROLL_HEIGHT = 4 // how many "viewport heights" the section takes to scroll through
 
+// Keep first card fixed for this many viewport heights before horizontal scroll starts (so user can read 7-11)
+const DEAD_ZONE_VIEWPORTS = 1
+
+// Lerp factor per frame: lower = smoother but more lag (0.08–0.15 works well on mobile)
+const SMOOTH_LERP = 0.12
+
 export function Experience() {
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [translateX, setTranslateX] = useState(0)
+  const targetProgressRef = useRef(0)
+  const smoothProgressRef = useRef(0)
+  const rafRef = useRef<number | null>(null)
 
   useEffect(() => {
     const section = sectionRef.current
     const track = trackRef.current
     if (!section || !track) return
 
-    const update = () => {
+    const computeTargetProgress = () => {
       const rect = section.getBoundingClientRect()
       const sectionTop = rect.top + window.scrollY
       const viewportHeight = window.innerHeight
       const sectionHeight = section.offsetHeight
       const scrollY = window.scrollY
-
-      // Progress through the "scroll zone": 0 when section top hits viewport top, 1 when we've scrolled sectionHeight - viewportHeight into it
       const scrollZoneStart = sectionTop - viewportHeight
       const scrollZoneEnd = sectionTop + sectionHeight - viewportHeight
-      const progress =
-        scrollY <= scrollZoneStart
-          ? 0
-          : scrollY >= scrollZoneEnd
-            ? 1
-            : (scrollY - scrollZoneStart) / (scrollZoneEnd - scrollZoneStart)
+      const deadZone = DEAD_ZONE_VIEWPORTS * viewportHeight
+      const zoneLength = scrollZoneEnd - scrollZoneStart - deadZone
+      if (scrollY <= scrollZoneStart + deadZone) return 0
+      if (scrollY >= scrollZoneEnd) return 1
+      if (zoneLength <= 0) return 0
+      return (scrollY - scrollZoneStart - deadZone) / zoneLength
+    }
+
+    const tick = () => {
+      const target = targetProgressRef.current
+      let smooth = smoothProgressRef.current
+      smooth += (target - smooth) * SMOOTH_LERP
+      if (Math.abs(target - smooth) < 0.001) smooth = target
+      smoothProgressRef.current = smooth
 
       const viewportWidth = window.innerWidth
       const trackWidth = track.scrollWidth
       const max = Math.max(0, trackWidth - viewportWidth)
-      setTranslateX(-progress * max)
+      setTranslateX(-smooth * max)
+
+      if (Math.abs(target - smooth) >= 0.001) {
+        rafRef.current = requestAnimationFrame(tick)
+      } else {
+        rafRef.current = null
+      }
     }
 
-    update()
-    window.addEventListener("scroll", update, { passive: true })
-    window.addEventListener("resize", update)
-    const ro = new ResizeObserver(update)
+    const onScrollOrResize = () => {
+      targetProgressRef.current = computeTargetProgress()
+      if (rafRef.current == null) {
+        rafRef.current = requestAnimationFrame(tick)
+      }
+    }
+
+    smoothProgressRef.current = computeTargetProgress()
+    targetProgressRef.current = smoothProgressRef.current
+    onScrollOrResize()
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true })
+    window.addEventListener("resize", onScrollOrResize)
+    const ro = new ResizeObserver(onScrollOrResize)
     ro.observe(track)
+
     return () => {
-      window.removeEventListener("scroll", update)
-      window.removeEventListener("resize", update)
+      window.removeEventListener("scroll", onScrollOrResize)
+      window.removeEventListener("resize", onScrollOrResize)
       ro.disconnect()
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current)
     }
   }, [])
 
@@ -206,7 +239,7 @@ export function Experience() {
 
           <div
             ref={trackRef}
-            className="absolute bottom-8 left-0 top-4 flex items-end gap-6 pb-4 pl-[50vw] pr-[50vw] transition-transform duration-150 ease-out md:bottom-12 md:gap-10 md:pb-5"
+            className="absolute bottom-8 left-0 top-4 flex items-end gap-6 pb-4 pl-[50vw] pr-[50vw] will-change-transform md:bottom-12 md:gap-10 md:pb-5"
             style={{
               transform: `translateX(${translateX}px)`,
             }}
